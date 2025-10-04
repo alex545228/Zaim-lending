@@ -21,6 +21,11 @@ img{max-width:100%; height:auto}
 .nav a{color:#fff; text-decoration:none; font-weight:700; font-size:16px; position:relative}
 .nav a::after{content:""; position:absolute; left:0; right:0; bottom:-8px; height:2px; background:transparent; transition:.2s}
 .nav a:hover::after{background:var(--green)}
+.nav .has-sub{position:relative}
+.nav .submenu{position:absolute; top:48px; left:50%; transform:translateX(-50%); background:#0f3a6d; padding:10px 0; border-radius:8px; min-width:240px; box-shadow:0 10px 20px rgba(0,0,0,.25); display:none; z-index:60}
+.nav .submenu li{list-style:none}
+.nav .submenu a{display:block; padding:10px 16px; font-weight:600; font-size:15px}
+.nav .has-sub:hover .submenu, .nav .has-sub:focus-within .submenu{display:block}
 .cta{height:44px; padding:0 16px}
 
 .burger{display:none; position:relative; width:28px; height:20px; background:transparent; border:0}
@@ -38,9 +43,9 @@ img{max-width:100%; height:auto}
 .mobile-drawer a{display:block; color:#fff; text-decoration:none; padding:12px 6px; border-bottom:1px solid #ffffff1a}
 
 /* Hero */
-.hero{padding:70px 0; background:var(--navy); color:#fff}
-.hero h1{font-size:50px; line-height:1.1; margin:0 0 20px}
-.hero .subtitle{font-size:18px; opacity:.9; margin:0 0 20px}
+.hero{padding:64px 0; background:var(--navy); color:#fff}
+.hero h1{font-size:48px; line-height:1.1; margin:0 0 18px}
+.hero .subtitle{font-size:18px; opacity:.9; margin:0 0 16px}
 
 /* Forms */
 .form{display:flex; gap:12px; align-items:center; flex-wrap:wrap}
@@ -71,8 +76,13 @@ img{max-width:100%; height:auto}
 .calc-scale{display:flex; justify-content:space-between; font-size:14px; color:#fff; opacity:.9; margin-top:6px}
 #calculator .calc-scale{color:var(--text)}
 .calc-readout{margin-top:8px; color:var(--text-dark)}
-.calc-result{display:flex; align-items:center; justify-content:space-between; border:2px solid var(--navy-2); border-radius:var(--radius-lg); padding:20px; background:#fff}
+.calc-result{display:grid; grid-template-columns:1fr minmax(280px,360px); align-items:center; gap:16px; border:2px solid var(--navy-2); border-radius:var(--radius-lg); padding:20px; background:#fff}
 .calc-result strong{font-size:28px}
+.calc-result .form{display:flex; flex-direction:column; gap:8px; align-items:stretch}
+.calc-result .form input[type=tel]{height:56px}
+.calc-result .form .agree{color:#3c3c3c}
+.agree{font-size:13px}
+.agree input{vertical-align:middle; margin-right:6px}
 
 /* Tabs */
 .tabs{list-style:none; display:flex; flex-wrap:wrap; gap:12px; padding:0; margin:0 0 24px}
@@ -90,6 +100,8 @@ img{max-width:100%; height:auto}
 .cards{display:grid; grid-template-columns:repeat(4,1fr); gap:16px}
 .card{background:#fff; color:var(--text); border:2px solid var(--navy-2); border-radius:var(--radius-lg); padding:24px}
 .card h3{margin:0 0 8px}
+.cards-pledge{grid-template-columns:repeat(3,1fr)}
+.cards-pledge .card .img{height:120px; display:flex; align-items:center; justify-content:center; margin-bottom:12px}
 
 /* Accordion */
 .accordion{border-top:1px solid var(--border-soft)}
@@ -139,18 +151,34 @@ img{max-width:100%; height:auto}
 
 /* Utilities */
 .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+.help-list{display:grid; grid-template-columns:repeat(2,1fr); gap:8px 16px; padding:0; margin:16px 0}
+.help-list li{list-style:disc; margin-left:18px}
+.terms-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px}
 
 /* Responsive */
 @media (max-width:991px){
   .calc{grid-template-columns:1fr}
+  .section h2{font-size:34px}
   .cards{grid-template-columns:repeat(2,1fr)}
+  .cards-pledge{grid-template-columns:repeat(2,1fr)}
   .steps{grid-template-columns:1fr}
   .contacts{grid-template-columns:1fr}
+  .help-list{grid-template-columns:1fr}
+  .terms-grid{grid-template-columns:1fr}
+  .calc-result{grid-template-columns:1fr}
 }
 @media (max-width:767px){
   .nav .menu{display:none}
   .burger{display:block}
   .cta{display:none}
-  .hero h1{font-size:35px}
-  .section{padding:40px 0}
+  .hero{padding:28px 0}
+  .hero h1{font-size:30px}
+  .hero .subtitle{font-size:14px; margin-bottom:12px}
+  .form-inline input{height:52px}
+  .btn{height:52px}
+  .section{padding:32px 0}
+  .section h2{font-size:26px}
 }
+
+/* Hero consent links readable on dark */
+.hero .agree a{color:#fff; text-decoration:underline}

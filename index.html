@@ -24,11 +24,20 @@
           <li class="dot">•</li>
           <li><a href="#terms">Условия и требования</a></li>
           <li class="dot">•</li>
-          <li class="has-sub">
-            <a href="#assets">Займ под залог</a>
+          <li class="has-sub" aria-haspopup="true">
+            <a href="#pledge">Займ под залог</a>
+            <ul class="submenu" aria-label="Подменю: Займ под залог">
+              <li><a href="#pledge">Автомобиль</a></li>
+              <li><a href="#pledge-truck">Грузовой авто</a></li>
+              <li><a href="#pledge-moto">Мотоцикл</a></li>
+              <li><a href="#pledge-spec">Спецтехника</a></li>
+              <li><a href="#pledge-commercial">Коммерческий транспорт</a></li>
+              <li><a href="#pledge-legal">Для юридических лиц</a></li>
+              <li><a href="#leasing">Все виды лизинга</a></li>
+            </ul>
           </li>
           <li class="dot">•</li>
-          <li><a href="#partners">Партнерам</a></li>
+          <li><a href="#help">Помощь</a></li>
           <li class="dot">•</li>
           <li><a href="#contacts">Контакты</a></li>
         </ul>
@@ -55,7 +64,7 @@
         <label class="sr-only" for="phoneTop">Ваш телефон</label>
         <input type="tel" id="phoneTop" name="phone" placeholder="Ваш телефон" required>
         <button type="submit" class="btn btn-primary">Узнать условия</button>
-        <small class="agree">Нажимая кнопку, вы соглашаетесь с политикой обработки ПДн</small>
+        <label class="agree"><input type="checkbox" id="consentTop" required> Я ознакомлен(а) и соглашаюсь с <a href="#policy" target="_blank" rel="noopener">Политикой обработки персональных данных</a> и даю <a href="#consent" target="_blank" rel="noopener">Согласие</a> на обработку персональных данных.</label>
       </form>
     </div>
   </section>
@@ -86,33 +95,107 @@
             <p>Ежемесячный платеж</p>
             <strong id="payment">—</strong>
           </div>
-          <button class="btn btn-primary" id="applyBtn">Оставить заявку</button>
+          <form class="form" id="calcApplyForm" novalidate>
+            <label class="sr-only" for="calcPhone">Телефон</label>
+            <input type="tel" id="calcPhone" name="phone" placeholder="+7 (___) ___-__-__" required>
+            <button type="submit" class="btn btn-primary">Получить займ</button>
+            <label class="agree"><input type="checkbox" id="consentCalc" required> Соглашаюсь с <a href="#policy" target="_blank" rel="noopener">политикой</a> и <a href="#consent" target="_blank" rel="noopener">согласием</a>.</label>
+          </form>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Tabs (assets types) -->
-  <section class="section" id="assets">
+  <!-- Выбор залога -->
+  <section class="section" id="pledge">
     <div class="container">
-      <h2>Залог под все виды имущества</h2>
-      <ul class="tabs" role="tablist">
-        <li><button role="tab" aria-selected="true" aria-controls="tab-cars" id="tab-btn-cars">Легковые авто</button></li>
-        <li><button role="tab" aria-selected="false" aria-controls="tab-real" id="tab-btn-real">Недвижимость</button></li>
-        <li><button role="tab" aria-selected="false" aria-controls="tab-trucks" id="tab-btn-trucks">Грузовые авто</button></li>
+      <h2>Выберите вид залога</h2>
+      <div class="cards cards-pledge">
+        <article class="card" id="pledge-car">
+          <div class="img"><img src="assets/img/pledge-car.svg" alt="Автомобиль"></div>
+          <h3>Займ под залог автомобиля</h3>
+          <p>Быстрое одобрение, авто остаётся у вас.</p>
+          <button class="btn btn-primary" data-pledge="car" data-anchor="calculator">Оформить</button>
+        </article>
+        <article class="card" id="pledge-truck">
+          <div class="img"><img src="assets/img/pledge-truck.svg" alt="Грузовой авто"></div>
+          <h3>Займ под залог грузового авто</h3>
+          <p>Поддержка бизнеса и ИП.</p>
+          <button class="btn btn-primary" data-pledge="truck" data-anchor="calculator">Оформить</button>
+        </article>
+        <article class="card" id="pledge-moto">
+          <div class="img"><img src="assets/img/pledge-moto.svg" alt="Мотоцикл"></div>
+          <h3>Займ под залог мотоцикла</h3>
+          <p>Минимум документов, прозрачные условия.</p>
+          <button class="btn btn-primary" data-pledge="moto" data-anchor="calculator">Оформить</button>
+        </article>
+        <article class="card" id="pledge-spec">
+          <div class="img"><img src="assets/img/pledge-spec.svg" alt="Спецтехника"></div>
+          <h3>Займ под залог спецтехники</h3>
+          <p>Индивидуальные условия для техники.</p>
+          <button class="btn btn-primary" data-pledge="spec" data-anchor="calculator">Оформить</button>
+        </article>
+        <article class="card" id="pledge-commercial">
+          <div class="img"><img src="assets/img/pledge-commercial.svg" alt="Коммерческий транспорт"></div>
+          <h3>Коммерческий транспорт</h3>
+          <p>Решения для корпоративных парков.</p>
+          <button class="btn btn-primary" data-pledge="commercial" data-anchor="calculator">Оформить</button>
+        </article>
+        <article class="card" id="pledge-legal">
+          <div class="img"><img src="assets/img/pledge-legal.svg" alt="Юридические лица"></div>
+          <h3>Займ для юридических лиц</h3>
+          <p>Гибкие предложения для бизнеса.</p>
+          <button class="btn btn-primary" data-pledge="legal" data-anchor="calculator">Оформить</button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Все виды лизинга -->
+  <section class="section" id="leasing">
+    <div class="container">
+      <h2>Все виды лизинга</h2>
+      <p>Автолизинг, лизинг спецтехники и коммерческого транспорта. Подберём индивидуальные условия с учётом ваших задач и сроков.</p>
+      <a class="btn btn-primary" href="#calculator">Рассчитать</a>
+    </div>
+  </section>
+
+  <!-- Помощь с получением займа -->
+  <section class="section" id="help">
+    <div class="container">
+      <h2>Поможем с получением займа, если вам требуется:</h2>
+      <ul class="help-list">
+        <li>Срочно закрыть кассовый разрыв</li>
+        <li>Пополнить оборотные средства</li>
+        <li>Рефинансировать текущие обязательства</li>
+        <li>Получить займ без подтверждения дохода</li>
       </ul>
-      <div class="tab-panels">
-        <div class="tab-panel show" id="tab-cars" role="tabpanel" aria-labelledby="tab-btn-cars">
-          <p>Одобряем онлайн. Минимум документов. Авто остаётся у вас.</p>
-          <a class="btn btn-ghost" href="#">Оформить заявку</a>
+      <a class="btn btn-ghost" href="#calculator">Оформить заявку</a>
+    </div>
+  </section>
+
+  <!-- Условия и требования -->
+  <section class="section" id="terms">
+    <div class="container">
+      <h2>Условия и требования</h2>
+      <div class="terms-grid">
+        <div>
+          <h3>Условия</h3>
+          <ul>
+            <li>Ставка от 2–3% в месяц (зависит от объекта и срока)</li>
+            <li>Срок от 3 до 60 месяцев</li>
+            <li>Выдача наличными или на карту</li>
+            <li>Досрочное погашение без штрафов</li>
+          </ul>
         </div>
-        <div class="tab-panel" id="tab-real" role="tabpanel" aria-labelledby="tab-btn-real">
-          <p>Займы под залог недвижимости на гибких условиях.</p>
-          <a class="btn btn-ghost" href="#">Оформить заявку</a>
-        </div>
-        <div class="tab-panel" id="tab-trucks" role="tabpanel" aria-labelledby="tab-btn-trucks">
-          <p>Финансирование для коммерческого транспорта и спецтехники.</p>
-          <a class="btn btn-ghost" href="#">Оформить заявку</a>
+        <div>
+          <h3>Требования</h3>
+          <ul>
+            <li>Собственник — гражданин РФ 18+</li>
+            <li>ПТС/СТС в наличии (оригиналы/цифровые)</li>
+            <li>Авто/техника в исправном состоянии</li>
+            <li>Наличие второго ключа желательно</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -167,6 +250,19 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Policy/Consent anchors -->
+  <section class="section" id="policy" aria-hidden="true" style="display:none"></section>
+  <section class="section" id="consent" aria-hidden="true" style="display:none"></section>
+
+  <!-- Partners placeholder -->
+  <section class="section" id="partners">
+    <div class="container">
+      <h2>Партнерам</h2>
+      <p>Ищем партнёров в регионах. Индивидуальные условия и быстрые approvals.</p>
+      <a class="btn btn-primary" href="#calculator">Стать партнёром</a>
     </div>
   </section>
 

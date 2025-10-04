@@ -65,16 +65,7 @@
   }
 
   // Tabs
-  const tabButtons = $$('.tabs [role=tab]');
-  const panels = $$('.tab-panel');
-  tabButtons.forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      tabButtons.forEach(b=>b.setAttribute('aria-selected','false'));
-      btn.setAttribute('aria-selected','true');
-      const id = btn.getAttribute('aria-controls');
-      panels.forEach(p=>p.classList.toggle('show', p.id === id));
-    });
-  });
+  // (tabs removed)
 
   // Accordion
   const acc = $('[data-accordion]');
@@ -138,7 +129,11 @@
     const required = $$('[required]', form);
     let ok = true;
     required.forEach(f=>{
-      if(!f.value || (f.type==='tel' && f.value.replace(/\D/g,'').length < 11)){
+      const isTel = f.type==='tel';
+      const isCheckbox = f.type==='checkbox';
+      const emptyTel = isTel && f.value.replace(/\D/g,'').length < 11;
+      const emptyCheckbox = isCheckbox && !f.checked;
+      if(!f.value || emptyTel || emptyCheckbox){
         ok = false; f.classList.add('invalid');
       } else f.classList.remove('invalid');
     });
@@ -214,6 +209,22 @@
   });
   document.addEventListener('keydown', (e)=>{
     if(e.key==='Escape') $$('.modal').forEach(m=> m.hidden = true);
+  });
+
+  // Dropdown a11y: close submenu on outside click
+  document.addEventListener('click', (e)=>{
+    const sub = e.target.closest('.has-sub');
+    if(!sub){
+      $$('.submenu').forEach(s=> s.style.display='');
+    }
+  });
+  $$('.has-sub > a').forEach(link=>{
+    link.addEventListener('click', (e)=>{
+      // Allow anchor navigation while also toggling submenu
+      const li = link.parentElement;
+      const sm = $('.submenu', li);
+      if(sm){ e.preventDefault(); sm.style.display = (sm.style.display==='block'?'':'block'); }
+    });
   });
 
   // Apply flow: Step 1 (phone + captcha) -> send SMS, Step 2 -> verify
@@ -322,6 +333,37 @@
       }
     });
   }
+
+  // New: calculator inline apply form with consent
+  const calcApplyForm = $('#calcApplyForm');
+  if(calcApplyForm){
+    calcApplyForm.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      if(!validateForm(calcApplyForm)) return;
+      const fd = new FormData(calcApplyForm);
+      const phone = String(fd.get('phone')||'');
+      const consent = $('#consentCalc');
+      if(consent && !consent.checked){ alert('Подтвердите согласие на обработку персональных данных'); return; }
+      try{ sessionStorage.setItem('apply_phone', phone); }catch{}
+      // Open SMS flow (same as apply button auto path)
+      try{
+        const c = await apiPost('/api/captcha/new', {});
+        const sendRes = await apiPost('/api/sms/send', { phone, captchaId: c.id, captcha: c.echoAnswer||'' });
+        openModal('#smsModal');
+        if(sendRes.echoCode){ const codeInput=$('#sms_code'); if(codeInput) codeInput.placeholder = sendRes.echoCode; }
+      }catch{
+        openModal('#phoneCaptchaModal');
+        await refreshCaptcha();
+      }
+    });
+  }
+
+  // Pledge cards buttons scroll
+  $$('[data-anchor]')
+    .forEach(btn=> btn.addEventListener('click', ()=>{
+      const t = '#'+btn.getAttribute('data-anchor');
+      const el = $(t); if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    }));
 
   // Cookie bar
   const cookieBar = $('#cookieBar');
