@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>КардиналАвтоЛомбард — Займы под залог авто</title>
+  <meta name="description" content="Демо-страница: повторение логики и стиля mos-capital.ru" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Circe is proprietary; fallback to Inter/Arial for demo. You can self-host Circe later. -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Open+Sans+Condensed:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <!-- Sticky Header -->
+  <header class="header sticky">
+    <div class="container header-inner">
+      <a href="#top" class="logo" aria-label="Логотип">КардиналАвтоЛомбард</a>
+      <nav class="nav" aria-label="Главное меню">
+        <button class="burger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Открыть меню">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="menu" id="desktopMenu">
+          <li><a href="#calculator">Рассчитать платеж</a></li>
+          <li class="dot">•</li>
+          <li><a href="#terms">Условия и требования</a></li>
+          <li class="dot">•</li>
+          <li class="has-sub">
+            <a href="#assets">Займ под залог</a>
+          </li>
+          <li class="dot">•</li>
+          <li><a href="#partners">Партнерам</a></li>
+          <li class="dot">•</li>
+          <li><a href="#contacts">Контакты</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-primary cta" href="#top">Онлайн оформление</a>
+    </div>
+    <nav class="mobile-drawer" id="mobileMenu" aria-label="Мобильное меню" hidden>
+      <ul>
+        <li><a href="#calculator">Рассчитать платеж</a></li>
+        <li><a href="#terms">Условия и требования</a></li>
+        <li><a href="#assets">Займ под залог</a></li>
+        <li><a href="#partners">Партнерам</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="top">
+    <div class="container">
+  <h1>КардиналАвтоЛомбард — деньги под залог автомобиля в Москве</h1>
+      <p class="subtitle">Автомобиль остаётся у вас • Одобряем более 90% обращений • С любой кредитной историей</p>
+      <form class="form form-inline" id="leadFormTop" novalidate>
+        <label class="sr-only" for="phoneTop">Ваш телефон</label>
+        <input type="tel" id="phoneTop" name="phone" placeholder="Ваш телефон" required>
+        <button type="submit" class="btn btn-primary">Узнать условия</button>
+        <small class="agree">Нажимая кнопку, вы соглашаетесь с политикой обработки ПДн</small>
+      </form>
+    </div>
+  </section>
+
+  <!-- Calculator -->
+  <section class="section" id="calculator">
+    <div class="container">
+      <h2>Рассчитайте ежемесячный платеж</h2>
+      <div class="calc">
+        <div class="calc-item">
+          <label for="amount">Сумма займа</label>
+          <input type="range" id="amount" min="50000" max="30000000" step="50000" value="300000"/>
+          <div class="calc-scale" aria-hidden="true">
+            <span>50 тыс</span><span>7,5 млн</span><span>15 млн</span><span>22,5 млн</span><span>30 млн</span>
+          </div>
+          <div class="calc-readout"><output id="amountOut">300 000 ₽</output></div>
+        </div>
+        <div class="calc-item">
+          <label for="term">Срок займа</label>
+          <input type="range" id="term" min="3" max="60" step="3" value="12"/>
+          <div class="calc-scale" aria-hidden="true">
+            <span>3 мес</span><span>12 мес</span><span>24 мес</span><span>36 мес</span><span>48 мес</span><span>60 мес</span>
+          </div>
+          <div class="calc-readout"><output id="termOut">12 мес.</output></div>
+        </div>
+        <div class="calc-result">
+          <div>
+            <p>Ежемесячный платеж</p>
+            <strong id="payment">—</strong>
+          </div>
+          <button class="btn btn-primary" id="applyBtn">Оставить заявку</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tabs (assets types) -->
+  <section class="section" id="assets">
+    <div class="container">
+      <h2>Залог под все виды имущества</h2>
+      <ul class="tabs" role="tablist">
+        <li><button role="tab" aria-selected="true" aria-controls="tab-cars" id="tab-btn-cars">Легковые авто</button></li>
+        <li><button role="tab" aria-selected="false" aria-controls="tab-real" id="tab-btn-real">Недвижимость</button></li>
+        <li><button role="tab" aria-selected="false" aria-controls="tab-trucks" id="tab-btn-trucks">Грузовые авто</button></li>
+      </ul>
+      <div class="tab-panels">
+        <div class="tab-panel show" id="tab-cars" role="tabpanel" aria-labelledby="tab-btn-cars">
+          <p>Одобряем онлайн. Минимум документов. Авто остаётся у вас.</p>
+          <a class="btn btn-ghost" href="#">Оформить заявку</a>
+        </div>
+        <div class="tab-panel" id="tab-real" role="tabpanel" aria-labelledby="tab-btn-real">
+          <p>Займы под залог недвижимости на гибких условиях.</p>
+          <a class="btn btn-ghost" href="#">Оформить заявку</a>
+        </div>
+        <div class="tab-panel" id="tab-trucks" role="tabpanel" aria-labelledby="tab-btn-trucks">
+          <p>Финансирование для коммерческого транспорта и спецтехники.</p>
+          <a class="btn btn-ghost" href="#">Оформить заявку</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Steps (45 minutes) -->
+  <section class="section" id="minutes">
+    <div class="container">
+      <h2>Всего 45 минут до получения займа</h2>
+      <ol class="steps">
+        <li><span class="n">1</span><p>Проведение бесплатной экспертной оценки — 15 минут</p></li>
+        <li><span class="n">2</span><p>Заключение договора — 15 минут</p></li>
+        <li><span class="n">3</span><p>Выдача наличными или на карту — 15 минут</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Advantages -->
+  <section class="section section-navy" id="advantages">
+    <div class="container">
+      <h2>Наши преимущества</h2>
+      <div class="cards">
+        <article class="card"><h3>Работаем по закону</h3><p>Прозрачные схемы, соблюдаем ФЗ-164.</p></article>
+        <article class="card"><h3>Гибкие условия</h3><p>Для физ. и юр. лиц, без КАСКО, без справок.</p></article>
+        <article class="card"><h3>Без скрытых комиссий</h3><p>Оценка, выезд эксперта и договор — бесплатно.</p></article>
+        <article class="card"><h3>Всегда на стороне клиента</h3><p>Рефинансирование, гибкая ставка, 24/7.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ (Accordion) -->
+  <section class="section" id="faq">
+    <div class="container">
+      <h2>Часто задаваемые вопросы</h2>
+      <div class="accordion" data-accordion>
+        <div class="acc-item">
+          <button class="acc-head" aria-expanded="false">Можно ли оформить договор с временной пропиской?</button>
+          <div class="acc-body" hidden>
+            <p>Да, при наличии миграционного патента/РВП доступны займы под залог авто на индивидуальных условиях.</p>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head" aria-expanded="false">Какая процентная ставка?</button>
+          <div class="acc-body" hidden>
+            <p>От 2–3% в месяц. Точные условия — после оценки авто и анкеты.</p>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head" aria-expanded="false">Нужны ли справки о доходах?</button>
+          <div class="acc-body" hidden>
+            <p>Нет, достаточно паспорта, ПТС и СТС. Авто остаётся у вас.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacts -->
+  <section class="section" id="contacts">
+    <div class="container">
+      <h2>Ждём вас в наших офисах</h2>
+      <div class="contacts">
+        <div class="contacts-info">
+          <p class="time">Ежедневно 10:00–20:00 • Приём заявок 24/7</p>
+          <p class="addr">Москва, ул. Антонова-Овсеенко, 15 стр.3</p>
+          <a class="tel big" href="tel:+74952603204">+7 (495) 260-32-04</a>
+          <button class="btn btn-primary" data-modal-target="#callbackModal">Перезвоните мне</button>
+        </div>
+        <div class="map" role="img" aria-label="Карта офиса">
+          <!-- Placeholder map block -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+  <div class="foot-brand">КардиналАвтоЛомбард • Займы под залог авто</div>
+      <div class="foot-links">
+        <a href="#calculator">Калькулятор</a>
+        <a href="#advantages">Преимущества</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacts">Контакты</a>
+      </div>
+      <div class="foot-copy">© 2025. Информация не является публичной офертой.</div>
+    </div>
+  </footer>
+
+  <!-- Cookie bar -->
+  <div class="cookie" id="cookieBar" role="dialog" aria-live="polite" aria-label="Сообщение о cookies" hidden>
+    <div class="container cookie-inner">
+      <p>На нашем сайте используются cookie-файлы. Продолжая использовать сайт, вы соглашаетесь с их использованием.</p>
+      <div class="cookie-actions">
+        <button class="btn btn-warn" id="cookieAccept">Принять</button>
+        <button class="btn btn-ghost" id="cookieClose" aria-label="Закрыть">×</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  <!-- Phone + Captcha Modal (step 1) -->
+  <div class="modal" id="phoneCaptchaModal" role="dialog" aria-modal="true" hidden>
+    <div class="modal-backdrop" data-modal-close></div>
+    <div class="modal-dialog" role="document">
+      <button class="modal-close" data-modal-close aria-label="Закрыть">×</button>
+      <h3 class="modal-title">Подтвердите номер</h3>
+      <form class="form" id="phoneCaptchaForm" novalidate>
+        <label for="pc_phone">Телефон</label>
+        <input id="pc_phone" name="phone" type="tel" required placeholder="+7 (___) ___-__-__">
+        <div id="captchaWrap">
+          <label id="captchaQuestion" for="pc_captcha">Подтвердите, что вы не робот</label>
+          <input id="pc_captcha" name="captcha" required placeholder="Ответ">
+        </div>
+        <input type="hidden" id="pc_captcha_id" name="captchaId" />
+        <button type="submit" class="btn btn-primary">Получить код</button>
+        <small class="agree">Используем SMS-подтверждение и капчу для защиты</small>
+      </form>
+    </div>
+  </div>
+
+  <!-- SMS Code Modal (step 2) -->
+  <div class="modal" id="smsModal" role="dialog" aria-modal="true" hidden>
+    <div class="modal-backdrop" data-modal-close></div>
+    <div class="modal-dialog" role="document">
+      <button class="modal-close" data-modal-close aria-label="Закрыть">×</button>
+      <h3 class="modal-title">Введите код из SMS</h3>
+      <form class="form" id="smsForm" novalidate>
+        <label for="sms_code">Код</label>
+        <input id="sms_code" name="code" inputmode="numeric" pattern="\\d*" required placeholder="XXXX">
+        <button type="submit" class="btn btn-primary">Подтвердить</button>
+        <small class="agree">Код действителен ограниченное время</small>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="callbackModal" role="dialog" aria-modal="true" hidden>
+    <div class="modal-backdrop" data-modal-close></div>
+    <div class="modal-dialog" role="document">
+      <button class="modal-close" data-modal-close aria-label="Закрыть">×</button>
+      <h3 class="modal-title">Перезвонить вам?</h3>
+      <form class="form" id="callbackForm" novalidate>
+        <label for="cbphone">Телефон</label>
+        <input id="cbphone" name="phone" type="tel" required placeholder="+7 (___) ___-__-__">
+        <button type="submit" class="btn btn-primary">Жду звонка</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Floating messenger -->
+  <div class="messenger" id="messenger">
+    <button class="btn-floating" data-open="https://api.whatsapp.com/send/?phone=79252208742" aria-label="WhatsApp"></button>
+    <button class="btn-floating tg" data-open="https://t.me/mos_capital2023" aria-label="Telegram"></button>
+    <button class="btn-up" id="btnUp" aria-label="Наверх"></button>
+  </div>
+
+  <script>
+    // If you deploy frontend separately from the API, set window.__API_BASE__ to your API origin.
+    // Example: window.__API_BASE__ = 'https://your-domain.com';
+    // By default, it will use same-origin relative paths.
+    window.__API_BASE__ = '';
+  </script>
+  <script src="assets/js/app.js" defer></script>
+</body>
+</html>
